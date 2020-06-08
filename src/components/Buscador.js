@@ -1,24 +1,50 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import '@elastic/eui/dist/eui_theme_light.css'
 import { EuiComboBox } from '@elastic/eui';
-import AppSearchAPIConnector from "@elastic/search-ui-app-search-connector";
-import { SearchProvider, Results, SearchBox } from "@elastic/react-search-ui";
-import { Layout } from "@elastic/react-search-ui-views";
 
-    export default function Buscador () {
-        
-        const [allOptions, setAllOptions] = useState([]);
-        const [municipios, setMunicipios] = useState([]);
-        
-        useEffect(() => {
-            fetch('https://www.el-tiempo.net/api/json/v2/provincias/08/municipios')
-            .then((response) => response.json())
-            .then((response) => {
-                setMunicipios(response.municipios);
-            });
+    export default function Buscador (municipios) {
 
-        });
-        
+       const muni = [
+        {
+          label: 'Titan',
+          'data-test-subj': 'titanOption',
+        },
+        {
+          label: 'Enceladus',
+        },
+        {
+          label: 'Mimas',
+        },
+        {
+          label: 'Dione',
+        },
+        {
+          label: 'Iapetus',
+        },
+        {
+          label: 'Phoebe',
+        },
+        {
+          label: 'Rhea',
+        },
+        {
+          label:
+            "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
+        },
+        {
+          label: 'Tethys',
+        },
+        {
+          label: 'Hyperion',
+        },
+      ];
+
+       const allOptions = municipios.municipios;
+       console.log(muni);
+        console.log(allOptions);
+
+
+
         const [selectedOptions, setSelected] = useState([]);
         const [isLoading, setLoading] = useState(false);
         const [options, setOptions] = useState([]);

@@ -12,22 +12,29 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    this.fetchMunicipios();
+  }
+
+  fetchMunicipios() {
     fetch('https://www.el-tiempo.net/api/json/v2/provincias/08/municipios')
-    .then((response) => response.json())
-    .then((response) => {
-      this.setState({ municipios: response.municipios })
-    });
+      .then((response) => response.json())
+      .then(data => {
+        let municipios = data.municipios.map(municipio => {
+          return {label: municipio.NOMBRE}
+        });
+        this.setState({
+          municipios: municipios
+        });
+      }).catch(error => {
+        console.log(error);
+      });
   }
 
   render() {
     return (
       <div>
-        <Buscador/>
-        {/* {this.state.municipios.map((municipio, index) => {
-          return (
-            <div key={index}>{municipio.NOMBRE}</div>
-          )}   
-        )} */}
+        {/* {this.state.municipios.map(municipio => <div>{municipio.label}</div>)} */}
+       <Buscador municipios={this.state.municipios} />
       </div>
     );
   }
