@@ -33,7 +33,6 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        {/* {this.state.municipios.map(municipio => <div>{municipio.label}</div>)} */}
        <Buscador municipios={this.state.municipios} />
       </div>
     );
