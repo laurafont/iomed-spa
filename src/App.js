@@ -20,7 +20,7 @@ class App extends React.Component {
       .then((response) => response.json())
       .then(data => {
         let municipios = data.municipios.map(municipio => {
-          return {label: municipio.NOMBRE}
+          return {label: municipio.NOMBRE, id: municipio.CODIGOINE}
         });
         this.setState({
           municipios: municipios
