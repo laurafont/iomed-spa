@@ -1,0 +1,9 @@
+.App {
+    background-image: url(/background.jpg);
+    width: auto;
+    height: 800px;
+}
+
+.container {
+    text-align: center;
+}

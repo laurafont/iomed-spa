@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import '@elastic/eui/dist/eui_theme_light.css'
-import { EuiComboBox } from '@elastic/eui';
+import {
+  EuiComboBox
+  } from '@elastic/eui';
 import Tarjeta from "./Tarjeta";
 
 export default function Buscador (municipios) {
