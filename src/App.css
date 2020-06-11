@@ -4,6 +4,9 @@
     height: 800px;
 }
 
-.container {
-    text-align: center;
+.divs {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 10px;
 }

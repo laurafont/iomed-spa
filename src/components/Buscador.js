@@ -1,29 +1,48 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import '@elastic/eui/dist/eui_theme_light.css'
 import {
-  EuiComboBox
+  EuiComboBox,
+  EuiFlexItem,
+  EuiButton
   } from '@elastic/eui';
-import Tarjeta from "./Tarjeta";
 
-export default function Buscador (municipios) {
+class Buscador extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedOptions: []
+    };
+  }
 
-  const options = municipios.municipios;
+  onChange = selectedOptions => {
+    this.setState({
+      selectedOptions: selectedOptions
+    });
+  }
 
-  const [selectedOptions, setSelected] = useState([]);
+  getSelected() {
+    this.props.getSelected(this.state.selectedOptions);
+  }
 
-  const onChange = selectedOptions => {
-    setSelected(selectedOptions);
-  };
-
-  return (
-    <div>
-      <EuiComboBox
-        placeholder="Selecciona un municipio"
-        options={options}
-        selectedOptions={selectedOptions}
-        onChange={onChange}
-      />
-      <Tarjeta municipiosSelect={selectedOptions}/>
-    </div>
-  );
+  render() {
+    return (
+      <div>
+        <div className="divs">
+          <EuiComboBox
+            placeholder="Selecciona un municipio"
+            options={this.props.municipios}
+            selectedOptions={this.state.selectedOptions}
+            onChange={this.onChange}
+          />
+          </div>
+          <div className="divs">
+              <EuiButton size="s" onClick={() => this.getSelected()}>
+                Buscar
+              </EuiButton>
+          </div>
+      </div>
+    );
+  }
 }
+
+export default Buscador;

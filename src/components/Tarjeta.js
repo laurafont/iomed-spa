@@ -2,9 +2,8 @@ import React, { useState, useEffect, useCallback } from 'react';
 import '@elastic/eui/dist/eui_theme_light.css';
 import {
     EuiCard,
-    EuiFlexGroup,
     EuiFlexItem,
-    EuiButton
+    EuiFlexGrid
   } from '@elastic/eui';
 
 class Tarjeta extends React.Component {
@@ -13,6 +12,10 @@ class Tarjeta extends React.Component {
       this.state = {
         municipios : []
       };
+    }
+
+    componentDidMount() {
+        this.getWeather();
     }
 
     getWeather = () => {
@@ -34,24 +37,18 @@ class Tarjeta extends React.Component {
     render() {
         return (
             <div>
-                <EuiFlexItem grow={false}>
-                    <EuiButton size="s" onClick={municipios => this.getWeather(municipios)}>
-                    Go
-                    </EuiButton>
-                </EuiFlexItem>
-                <div>
+                <div className="divs">
                     {this.state.municipios ? 
-                        <EuiFlexGroup gutterSize="l">
-                        {this.state.municipios.map((municipio, index) => 
-                            <EuiFlexItem key={index}>
-                                <EuiCard
-                                layout="horizontal"
-                                title={municipio.municipio.NOMBRE}
-                                description={`La temperatura es ${municipio.temperatura_actual} ºC y la probabilidad de lluvia es ${municipio.lluvia} %.`}
-                            />
-                            </EuiFlexItem>
-                        )}
-                        </EuiFlexGroup>
+                        <EuiFlexGrid columns={4}>
+                            {this.state.municipios.map((municipio, index) => 
+                                <EuiFlexItem key={index}>
+                                    <EuiCard
+                                    title={municipio.municipio.NOMBRE}
+                                    description={`Temperatura: ${municipio.temperatura_actual} ºC ` + `Lluvia: ${municipio.lluvia} %`}
+                                />
+                                </EuiFlexItem>
+                            )}
+                        </EuiFlexGrid>
                     : null}
                 </div>
             </div>
